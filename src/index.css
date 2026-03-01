@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+/* Import Tailwind v4 */
+@import "tailwindcss";
+
+/* Define our professional academic theme */
+@theme {
+  --color-primary: #1A365D;   /* Deep Navy */
+  --color-secondary: #E2E8F0; /* Soft Gray */
+  --color-accent: #D69E2E;    /* Elegant Gold */
+  --color-background: #FAFAFA;/* Off-white */
+  
+  --font-serif: 'Merriweather', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+/* Base global styles */
+body {
+  background-color: var(--color-background);
+  color: #1f2937; /* Tailwind gray-800 */
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-primary);
+}
