@@ -4,7 +4,7 @@ import profilePhoto from '../assets/DrAmrutaMahajan.webp';
 
 const Home = () => {
   return (
-    <section className="min-h-[80vh] flex flex-col animate-fade-in py-10 px-8 md:px-16">
+    <section className="min-h-[80vh] flex flex-col animate-fade-in py-6 px-4 sm:px-8 md:px-16">
 
       {/* Top Section: Photo (left) + Details (right) */}
       <div className="flex flex-col md:flex-row gap-10 items-center mb-12">
@@ -29,12 +29,9 @@ const Home = () => {
             Faculty — Computer Engineering
           </span>
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-2 text-primary leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-primary leading-tight">
             Dr. Amruta Mahajan
           </h1>
-          {/* <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary leading-tight">
-            Abhishek Mahajan
-          </h1> */}
 
           {/* Decorative divider */}
           <div className="flex items-center gap-3 mb-5">
@@ -48,11 +45,11 @@ const Home = () => {
             "Dedicated to advancing computer engineering education and fostering innovation through practical learning and research."
           </p>
 
-          <div className="flex flex-wrap gap-4">
-            <Link to="/education" className="flex items-center bg-primary text-white px-6 py-3 rounded-xl hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+          <div className="flex flex-wrap gap-3">
+            <Link to="/education" className="flex items-center bg-primary text-white px-5 py-2.5 rounded-xl hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 text-sm sm:text-base">
               View Credentials <ChevronRight size={18} className="ml-2" />
             </Link>
-            <Link to="/publications" className="flex items-center border-2 border-primary text-primary px-6 py-3 rounded-xl hover:bg-primary hover:text-white transition-all duration-200">
+            <Link to="/publications" className="flex items-center border-2 border-primary text-primary px-5 py-2.5 rounded-xl hover:bg-primary hover:text-white transition-all duration-200 text-sm sm:text-base">
               Publications <ChevronRight size={18} className="ml-2" />
             </Link>
           </div>
@@ -94,7 +91,7 @@ const Home = () => {
             </div>
             <div>
               <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-1">Email</h3>
-              <a href="mailto:amruta.mahajan@pccoepune.org" className="text-gray-800 font-medium hover:text-accent transition-colors text-sm whitespace-nowrap">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=amruta.mahajan@pccoepune.org" target="_blank" rel="noopener noreferrer" className="text-gray-800 font-medium hover:text-accent transition-colors text-sm whitespace-nowrap">
                 amruta.mahajan@pccoepune.org
               </a>
             </div>
