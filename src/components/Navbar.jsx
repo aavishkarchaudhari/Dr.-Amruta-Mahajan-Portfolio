@@ -16,9 +16,14 @@ const Navbar = () => {
   const location = useLocation();
   const menuRef = useRef(null);
 
-  // Close menu on route change
+  // Close menu and scroll to top on route change
   useEffect(() => {
     setMenuOpen(false);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }, [location]);
 
   // Close menu on outside click
@@ -41,37 +46,37 @@ const Navbar = () => {
   }, [menuOpen]);
 
   const linkClass = ({ isActive }) =>
-    `px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${isActive
-      ? 'bg-primary text-white shadow-md'
-      : 'text-gray-600 hover:text-primary hover:bg-secondary/50'
+    `px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 flex items-center ${isActive
+      ? 'bg-linear-to-r from-primary to-accent text-white shadow-md shadow-primary/20 scale-105'
+      : 'text-gray-600 hover:text-primary hover:bg-primary/5 hover:scale-105'
     }`;
 
   const mobileLinkClass = ({ isActive }) =>
-    `block w-full px-5 py-3.5 rounded-xl text-base font-medium transition-all duration-200 ${isActive
-      ? 'bg-primary text-white shadow-md'
-      : 'text-gray-700 hover:bg-secondary/60 hover:text-primary'
+    `block w-full px-5 py-3.5 rounded-2xl text-base font-bold transition-all duration-300 ${isActive
+      ? 'bg-linear-to-r from-primary to-accent text-white shadow-md shadow-primary/20 translate-x-1'
+      : 'text-gray-600 hover:bg-primary/5 hover:text-primary hover:translate-x-1'
     }`;
 
   return (
-    <>
+    <div className="sticky top-0 z-50 pt-2 sm:pt-4 px-4 sm:px-6 w-full flex justify-center pointer-events-none">
       <nav
         ref={menuRef}
-        className="sticky top-0 z-50 backdrop-blur-lg bg-white/90 border-b border-gray-200 shadow-sm"
+        className="pointer-events-auto w-full max-w-6xl backdrop-blur-2xl bg-white/70 shadow-lg shadow-gray-200/50 border border-white/50 rounded-3xl md:rounded-full transition-all duration-300"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-auto md:py-4">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-auto md:py-3 cursor-pointer">
 
             {/* Logo / Name */}
-            <NavLink to="/" className="flex items-center gap-2 min-w-0">
+            <NavLink to="/" className="flex items-center gap-3 min-w-0 md:mr-8 group">
               <div className="min-w-0">
-                <h2 className="text-lg md:text-2xl font-bold text-primary tracking-wide leading-tight hover:text-primary/80 transition-colors truncate">
+                <h2 className="text-xl md:text-2xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-primary via-blue-600 to-accent tracking-wide leading-tight group-hover:opacity-80 transition-opacity truncate pb-1">
                   Dr. Amruta Mahajan
                 </h2>
               </div>
             </NavLink>
 
             {/* Desktop Nav Links */}
-            <ul className="hidden md:flex flex-wrap justify-center gap-2 md:gap-4">
+            <ul className="hidden xl:flex flex-wrap justify-end gap-1 md:gap-2 flex-1">
               {NAV_LINKS.map((link) => (
                 <li key={link.to}>
                   <NavLink to={link.to} className={linkClass} end={link.to === '/'}>
@@ -81,10 +86,13 @@ const Navbar = () => {
               ))}
             </ul>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile / Tablet Hamburger Button */}
             <button
-              onClick={() => setMenuOpen((prev) => !prev)}
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-xl text-primary hover:bg-secondary/50 transition-colors duration-200 flex-shrink-0"
+              onClick={(e) => {
+                e.preventDefault();
+                setMenuOpen((prev) => !prev);
+              }}
+              className="xl:hidden flex items-center justify-center w-10 h-10 rounded-2xl bg-white shadow-sm border border-gray-100 text-primary hover:bg-primary/5 transition-all duration-200 shrink-0"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
             >
@@ -94,13 +102,13 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile / Tablet Dropdown Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+          className={`xl:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'
             }`}
         >
-          <div className="px-4 pb-5 pt-2 bg-white/95 backdrop-blur-md border-t border-gray-100">
-            <ul className="flex flex-col gap-1.5">
+          <div className="px-4 pb-5 pt-2 mx-2 mb-2 bg-white/80 backdrop-blur-xl rounded-b-3xl border-t border-gray-100/50">
+            <ul className="flex flex-col gap-2">
               {NAV_LINKS.map((link) => (
                 <li key={link.to}>
                   <NavLink
@@ -121,12 +129,12 @@ const Navbar = () => {
       {/* Backdrop overlay for mobile */}
       {menuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 top-0 -z-10 bg-black/5 backdrop-blur-xs xl:hidden pointer-events-auto"
           onClick={() => setMenuOpen(false)}
           aria-hidden="true"
         />
       )}
-    </>
+    </div>
   );
 };
 
