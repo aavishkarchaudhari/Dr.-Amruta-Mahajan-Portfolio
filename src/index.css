@@ -1,17 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 /* Import Tailwind v4 */
 @import "tailwindcss";
 
 /* Define our professional academic theme */
 @theme {
-  --color-primary: #1A365D;   /* Deep Navy */
-  --color-secondary: #E2E8F0; /* Soft Gray */
-  --color-accent: #D69E2E;    /* Elegant Gold */
-  --color-background: #FAFAFA;/* Off-white */
-  
-  --font-serif: 'Merriweather', serif;
-  --font-sans: 'Inter', sans-serif;
+  --color-primary: #17324d;
+  --color-secondary: #d9e2ec;
+  --color-accent: #b88a3b;
+  --color-background: #f5f1e8;
+  --color-surface: #fffdf8;
+  --color-surface-strong: #f3ecdf;
+  --color-ink: #1f2937;
+  --color-muted: #52606d;
+
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Manrope', sans-serif;
 }
 
 /* Base global styles */
@@ -19,18 +23,59 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 body {
   background-color: var(--color-background);
-  color: #1f2937; /* Tailwind gray-800 */
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(245, 241, 232, 0.96));
+  color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  /* Prevent horizontal overflow on mobile */
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+#root {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   color: var(--color-primary);
+  letter-spacing: 0.01em;
+}
+
+p {
+  color: var(--color-muted);
+}
+
+::selection {
+  background: rgba(184, 138, 59, 0.18);
+  color: var(--color-primary);
+}
+
+.animate-fade-in {
+  animation: fade-in 700ms ease-out both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Ensure all images are responsive by default */
@@ -41,7 +86,9 @@ img {
 
 /* Better tap targets on mobile */
 @media (max-width: 768px) {
-  button, a {
+
+  button,
+  a {
     -webkit-tap-highlight-color: transparent;
   }
 }
